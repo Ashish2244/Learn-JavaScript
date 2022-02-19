@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulb project</title>
+</head>
+<body>
+    <style>
+        .abc{
+            border: "2px ";
+            background-color: rgb(34, 238, 238);
+            color: rgb(33, 33, 230);
+        }
+    </style>
+
+    
+    <img id="bulb" onclick="onOff()" src="off.png" style="width:100px;height:150px;" alt="off"/>
+
+    <p class="abc">Click on bulb to turn on/off the light.</p>
+    <script>
+        const onOff=()=>{
+        let obj=document.getElementById("bulb");
+       
+        if(obj.getAttribute("src")=="off.png"){
+        obj.setAttribute("src","ON.png")
+        }
+        else{
+         obj.setAttribute("src", "off.png")
+        }
+        }
+
+    </script>
+</body>
+</html>
