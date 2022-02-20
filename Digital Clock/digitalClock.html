@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGITAL CLOCK</title>
+</head>
+<body>
+    <style>
+        .clock{
+            
+            color: whitesmoke;
+           padding-left: 200px;
+           padding-top: 20px;
+           padding-right: 100px;
+           padding-bottom: 100px;
+          
+        }
+    </style>
+    <h1 id="mainH1" class="clock"></h1>
+    <button onclick="showClocks()" style="color: white;background-color: green;">Show the Time</button>
+    <button onclick="stopClock()" style="color:  white;background-color:red;"> STOP</button>
+
+    <script>
+        document.body.style.backgroundColor="black";
+        var timer;
+        const startClock = () => {
+            var date = new Date;
+               
+            var seconds = date.getSeconds();
+            var minutes = date.getMinutes();
+            var hour = date.getHours();
+            document.getElementById("mainH1").innerHTML = `${hour - 12} : ${minutes} : ${seconds}`;
+
+        }
+        const showClocks=()=>{
+             timer = setInterval(startClock, 0);
+        }
+             
+        const stopClock=()=>{
+            clearInterval(timer);
+        }
+
+
+    
+    </script>
+
+    
+</body>
+</html>
