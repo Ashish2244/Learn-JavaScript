@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <title>Age Calculator</title>
+    <style>
+      body {
+        background: antiquewhite;
+      }
+      #ageTemp{
+          display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid mt-5" id="ageForm">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <div class="card">
+            <div class="card-body">
+              <h1 class="card-title text-center">AGE CALCULATOR</h1>
+              <p class="text-secondary">Select Your Date Of birth</p>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      id="dateF"
+                      placeholder="Enter Date"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <select class="form-select" id="monthF" required>
+                      <option selected disabled>Month</option>
+                      <option value="January">January</option>
+                      <option value="February">February</option>
+                      <option value="March">March</option>
+                      <option value="April">April</option>
+                      <option value="May">May</option>
+                      <option value="June">June</option>
+                      <option value="July">July</option>
+                      <option value="August">August</option>
+                      <option value="September">September</option>
+                      <option value="October">October</option>
+                      <option value="November">November</option>
+                      <option value="December">December</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      id="yearF"
+                      placeholder="Enter Year"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="mt-5 text-center">
+                  <button onclick="checkAge()" class="btn btn-primary">
+                    Check Your Age
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+     <div class="container-fluid mt-5" id="ageTemp">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="card">
+            <div class="card-body">
+              <h1 class="card-title text-center">Hello </h1>
+              <h6 class="mt-2" id="statement"> You have selected date of birth as  </h6>
+
+              <h6 id="dayT" class="mt-2"> days  </h6>
+              
+              <h6 id="yearT" class="mt-2"> year  </h6>
+
+           </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const checkAge = () => {
+        let dateF = document.getElementById("dateF").value;
+        let monthF = document.getElementById("monthF").value;
+        let yearF = document.getElementById("yearF").value;
+
+        //Date Validation
+        // console.log(dateF);
+        // console.log(monthF);
+        // console.log(yearF);
+
+        if (
+          monthF == "January" ||
+          monthF == "March" ||
+          monthF == "May" ||
+          monthF == "July" ||
+          monthF == "August" ||
+          monthF == "October" ||
+          monthF == "December"
+        ) {
+          if (dateF < 1 || dateF > 31) {
+            alert("Select Date Between 1 and 31 Both Inclusive");
+          }
+        }
+        if (
+          monthF == "April" ||
+          monthF == "June" ||
+          monthF == "September" ||
+          monthF == "November"
+        ) {
+          if (dateF < 1 || dateF > 30) {
+            alert("Select Date Between 1 and 30 Both Inclusive");
+          }
+        }
+       // console.log(yearF % 4);
+        if (monthF == "February" && yearF % 4 != 0 && yearF % 400 != 0) {
+          if (dateF < 1 || dateF > 28) {
+            alert("Select Date Between 1 and 28 Both Inclusive");
+          }
+        }
+        if (monthF == "February" && (yearF % 4 == 0 || yearF % 400 == 0)) {
+          if (dateF < 1 || dateF > 29) {
+            alert("Select Date Between 1 and 29 Both Inclusive");
+          }
+        }
+
+        //date Validation Ends
+        let dob =new Date(`${dateF} ${monthF} ${yearF}`)
+       // console.log(dob);
+        var now = new Date();
+      //  console.log(now)
+        var diff=now-dob;
+       // console.log(diff)
+        if(diff<0){
+            alert("Bro Take Birth First");
+        return
+        }
+
+        var dateFinal=Math.floor(diff/(1000*60*60*24));
+      
+        var yearFinal=Math.floor(diff/(1000*60*60*24*365));
+
+        var diffdays=dateFinal-(yearFinal*365)
+
+        var monthFinal=Math.floor(diffdays/30);
+
+        diffdays=diffdays-monthFinal*30;
+
+
+       
+        document.getElementById("statement").innerHTML=`You have selected date of birth as ${dateF} ${monthF} ${yearF}`
+        document.getElementById("dayT").innerHTML=`You are ${dateFinal} days Old.`
+      
+        document.getElementById("yearT").innerHTML=`You are ${yearFinal} years, ${monthFinal} months and ${diffdays} days Old.`
+
+        document.getElementById("ageForm").style.display="none";
+        document.getElementById("ageTemp").style.display="block";
+
+      };
+    </script>
+  </body>
+</html>
